@@ -1,5 +1,7 @@
 const Mongoose = require('mongoose')
 const validator = require('validator')
+const jwt = require('jsonwebtoken');
+var uniqueValidator = require('mongoose-unique-validator');
 const bcrypt = require('bcrypt');
 const UserRegister = Mongoose.Schema({
     name:{
@@ -29,7 +31,21 @@ const UserRegister = Mongoose.Schema({
         }
     }
  },
+ tokens:[{
+    token:{
+        type:String,
+        require:true
+    }
+}],
 },{timestamps:true})
+
+
+UserRegister.methods.generateAuthToken = async function(){
+    const token = jwt.sign({_id:this._id.toString()},'hungerkey')
+    this.tokens = this.tokens.concat({token:token})
+    await this.save()
+    return token
+}
 
 
 
@@ -59,7 +75,7 @@ UserRegister.pre('save',async function(next){
 
 
 const  RegisterUsers  = Mongoose.model('RegisterUsers',UserRegister)
-
+UserRegister.plugin(uniqueValidator);
 
 
 module.exports = RegisterUsers
