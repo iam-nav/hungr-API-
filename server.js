@@ -1,9 +1,13 @@
 const express = require('express')
+const cors = require('cors')
 const app = express()
 require('./src/db/mongodb')
 const RouterUserRegister = require('./src/router/user')
 const food = require('./src/router/food')
-const port = (3000)
+const port =  process.env.PORT
+
+
+app.use(cors())
 
 app.use(express.json())
 app.use(RouterUserRegister)

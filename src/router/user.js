@@ -3,7 +3,7 @@ const router = new express.Router()
 const auth = require('../middleware/auth')
 const RegisterUsers = require('../db/models/users')
 
-router.post('/Register',async (req,res)=>{
+router.post('/register',async (req,res)=>{
     const checkpassword = req.body
     const RegisterUser = new RegisterUsers(req.body)
     try{
