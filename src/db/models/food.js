@@ -1,9 +1,18 @@
 const Mongoose = require('mongoose')
 const FoodLocation = Mongoose.Schema({
     location:{
-        type:String,
-        required:true,
-        trim:true
+        long:{
+            type:String,
+            required:true
+        },
+        lat:{
+            type:String,
+            required:true
+        },
+        place:{
+            type:String,
+            required:true
+        }
     },
     food:{
         type:Boolean,

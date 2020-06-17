@@ -6,8 +6,6 @@ const RegisterUsers = require('../db/models/users')
 router.post('/register',async (req,res)=>{
     const checkpassword = req.body
     const RegisterUser = new RegisterUsers(req.body)
-
-    // console.log(checkpassword)
     try{
     // checkpassword.password!==checkpassword.confirmpassword?res.status(400).send('password and confirm password must be same'):
      await RegisterUser.save()
