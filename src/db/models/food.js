@@ -18,11 +18,11 @@ const FoodLocation = Mongoose.Schema({
         type:Boolean,
         default:false
     },
-    owner:{
-        type:Mongoose.Schema.Types.ObjectId,
-        required:true,
-        ref:'Users'
-    }
+    // owner:{
+    //     type:Mongoose.Schema.Types.ObjectId,
+    //     required:true,
+    //     ref:'Users'
+    // }
 },{timestamps:true})
 
 const Foods = Mongoose.model('Foods',FoodLocation)
